@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fff0f6" />
+  <meta name="description" content="A cute, interactive birthday surprise made with love for a best friend." />
+  <title>Happy Birthday, Bestie! 🎂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #ff77a8; --deep: #e84f8a; --lavender: #c9b6ff; --yellow: #ffe58a;
+      --ink: #4b3150; --paper: rgba(255,255,255,.82); --shadow: 0 18px 50px rgba(190, 91, 144, .15);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--ink); font-family: "Nunito", sans-serif; overflow-x: hidden;
+      background: radial-gradient(circle at 15% 15%, #fff 0, transparent 25%),
+        linear-gradient(135deg, #fff0f6 0%, #f5f0ff 50%, #fff8df 100%);
+    }
+    button { font: inherit; cursor: pointer; border: 0; }
+    .floaties { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+    .floaty { position: absolute; bottom: -60px; opacity: .55; animation: floatUp linear infinite; }
+    @keyframes floatUp { to { transform: translateY(-115vh) rotate(35deg); opacity: 0; } }
+    .wrap { position: relative; z-index: 1; width: min(1100px, 92%); margin: auto; }
+    nav { display:flex; justify-content:space-between; align-items:center; padding: 22px 0; gap:12px; }
+    .brand { font-weight:900; color:var(--deep); letter-spacing:.2px; }
+    .music-btn, .pill { border-radius:999px; padding:11px 16px; background:#fff; color:var(--deep); box-shadow:0 6px 18px #eaa3c633; font-weight:800; }
+    .hero { min-height: 78vh; display:grid; grid-template-columns:1.05fr .95fr; align-items:center; gap:28px; padding:30px 0 70px; }
+    .eyebrow { display:inline-block; background:#fff; border:1px solid #ffd4e4; border-radius:999px; padding:8px 14px; font-size:.88rem; font-weight:900; color:var(--deep); }
+    h1 { font-size:clamp(2.7rem, 7vw, 5.6rem); line-height:1.02; margin:20px 0; letter-spacing:-2px; }
+    h1 span { color:var(--deep); font-family:"Pacifico", cursive; font-weight:400; letter-spacing:0; }
+    .lead { font-size:1.1rem; line-height:1.8; max-width:550px; color:#775e7b; }
+    .actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:25px; }
+    .primary { padding:14px 20px; border-radius:999px; color:white; font-weight:900; background:linear-gradient(135deg,#ff83b2,#e84f8a); box-shadow:0 10px 24px #e84f8a40; transition:.2s; }
+    .primary:hover { transform:translateY(-3px); }
+    .secondary { padding:14px 20px; border-radius:999px; color:var(--deep); background:white; font-weight:900; box-shadow:0 8px 20px #a67db51c; }
+    .cake-scene { min-height:410px; display:grid; place-items:center; position:relative; }
+    .cake-card { width:min(390px,100%); aspect-ratio:1/1; display:grid; place-items:center; border-radius:48% 52% 48% 52%; background:linear-gradient(145deg,#fff9fd,#f3eaff); box-shadow:inset 0 0 0 12px #ffffff80, var(--shadow); position:relative; animation:bob 4s ease-in-out infinite; }
+    @keyframes bob { 50% { transform:translateY(-10px) rotate(1deg); } }
+    .cake { position:relative; width:230px; height:210px; margin-top:50px; }
+    .plate { position:absolute; width:270px; height:28px; background:#c9b6ff; border-radius:50%; bottom:0; left:50%; transform:translateX(-50%); box-shadow:0 8px 0 #ad94ef; }
+    .tier { position:absolute; left:50%; transform:translateX(-50%); border-radius:14px 14px 20px 20px; background:linear-gradient(90deg,#ff91b8,#ffb7d0); box-shadow:inset 0 -9px #f77ba8; }
+    .tier.bottom { width:220px; height:75px; bottom:18px; }
+    .tier.top { width:165px; height:62px; bottom:82px; background:linear-gradient(90deg,#fff,#fff0f6); box-shadow:inset 0 -8px #ffc8dc; }
+    .drip { position:absolute; width:24px; height:28px; top:45px; border-radius:0 0 14px 14px; background:#fff0f6; }
+    .drip.d1 { left:42px; height:34px; } .drip.d2 { left:82px; height:22px; } .drip.d3 { left:120px; height:32px; } .drip.d4 { left:147px; height:18px; }
+    .candle { position:absolute; bottom:142px; left:50%; transform:translateX(-50%); width:12px; height:47px; border-radius:5px; background:repeating-linear-gradient(135deg,#fff 0 6px,#ff77a8 6px 12px); }
+    .flame { position:absolute; width:19px; height:27px; border-radius:60% 40% 60% 40%; background:radial-gradient(circle at 50% 70%,#fff9a8 0 20%,#ffb13b 45%,#ff7195 80%); top:-25px; left:-4px; transform:rotate(4deg); filter:drop-shadow(0 0 10px #ffbf57); animation:flicker .7s alternate infinite; }
+    @keyframes flicker { to { transform:rotate(-7deg) scale(.9); } }
+    .berry { position:absolute; width:13px; height:13px; border-radius:50%; background:#ff4f87; bottom:123px; }
+    .berry.b1 { left:91px; } .berry.b2 { left:124px; } .berry.b3 { left:108px; bottom:145px; background:#a98aff; }
+    .spark { position:absolute; font-size:28px; animation:twinkle 1.8s ease-in-out infinite; }
+    .s1 { top:48px; left:35px; } .s2 { right:30px; top:95px; animation-delay:.7s; } .s3 { right:58px; bottom:35px; animation-delay:1s; }
+    @keyframes twinkle { 50% { transform:scale(1.35) rotate(15deg); } }
+    section { padding:54px 0; }
+    .section-head { text-align:center; margin-bottom:28px; }
+    .section-head h2 { font-size:clamp(2rem,4vw,3rem); margin:0 0 8px; letter-spacing:-1px; }
+    .section-head p { margin:0; color:#866c89; }
+    .glass { background:var(--paper); border:1px solid #fff; box-shadow:var(--shadow); border-radius:28px; padding:clamp(20px,4vw,38px); backdrop-filter:blur(12px); }
+    .countdown { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; max-width:720px; margin:24px auto 0; }
+    .time-box { background:white; border-radius:20px; padding:18px 8px; box-shadow:0 8px 24px #b88bb51b; text-align:center; }
+    .time-box strong { display:block; font-size:clamp(1.8rem,5vw,3rem); color:var(--deep); line-height:1.1; }
+    .time-box span { font-size:.82rem; font-weight:800; color:#967b99; text-transform:uppercase; letter-spacing:1px; }
+    .edit-note { font-size:.85rem; color:#987f9a; text-align:center; margin-top:18px; }
+    .memory-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .memory { background:#fff; border-radius:22px; padding:12px; box-shadow:0 10px 28px #b88bb51b; transform:rotate(var(--tilt,0deg)); transition:.25s; }
+    .memory:hover { transform:translateY(-6px) rotate(0); }
+    .photo { min-height:190px; border-radius:15px; display:grid; place-items:center; text-align:center; padding:14px; background:linear-gradient(135deg,#ffe0ed,#e9dcff); color:#986b9d; font-size:3rem; overflow:hidden; }
+    .photo img { width:100%; height:210px; object-fit:cover; display:block; border-radius:15px; }
+    .memory p { margin:12px 5px 4px; font-weight:900; text-align:center; }
+    .message-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .message { border-radius:22px; padding:23px; background:#fff; box-shadow:0 10px 28px #b88bb51b; }
+    .message .emoji { font-size:2rem; } .message h3 { margin:10px 0 7px; } .message p { margin:0; line-height:1.7; color:#806985; }
+    .gift-wrap { text-align:center; }
+    .gift { width:150px; height:140px; position:relative; margin:28px auto 18px; transition:.35s; filter:drop-shadow(0 12px 10px #a66aa533); }
+    .gift:hover { transform:translateY(-8px) rotate(-3deg); }
+    .gift-box { position:absolute; bottom:0; left:12px; width:126px; height:94px; border-radius:8px; background:linear-gradient(135deg,#ff7fae,#e84f8a); }
+    .gift-lid { position:absolute; top:31px; left:3px; width:144px; height:28px; border-radius:7px; background:#ffb4d0; transition:transform .6s; transform-origin:left bottom; }
+    .ribbon-v { position:absolute; width:23px; height:94px; bottom:0; left:63px; background:#ffe58a; }
+    .ribbon-h { position:absolute; width:144px; height:17px; top:36px; left:3px; background:#ffe58a; }
+    .bow { position:absolute; width:40px; height:27px; top:7px; left:35px; border:10px solid #ffe58a; border-radius:50% 50% 10% 50%; transform:rotate(25deg); }
+    .bow:after { content:""; position:absolute; width:40px; height:27px; border:10px solid #ffe58a; border-radius:50% 50% 50% 10%; left:18px; top:-11px; transform:rotate(-50deg); }
+    .gift.open .gift-lid { transform:translate(-15px,-48px) rotate(-25deg); }
+    .gift.open { animation:giftPop .5s ease; }
+    @keyframes giftPop { 50% { transform:scale(1.12); } }
+    .surprise { display:none; max-width:650px; margin:24px auto 0; padding:25px; background:linear-gradient(135deg,#fff,#fff2fa); border:2px dashed #ffabd0; border-radius:24px; line-height:1.8; animation:appear .6s ease; }
+    .surprise.show { display:block; }
+    @keyframes appear { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+    footer { text-align:center; padding:42px 0 55px; color:#987f9a; }
+    footer strong { color:var(--deep); }
+    #effects { position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:10; }
+    .toast { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); z-index:20; background:#4b3150; color:white; padding:12px 18px; border-radius:999px; font-size:.9rem; opacity:0; transition:opacity .3s; pointer-events:none; text-align:center; width:max-content; max-width:90%; }
+    .toast.show { opacity:1; }
+    @media(max-width:760px) {
+      .hero { grid-template-columns:1fr; padding-top:18px; text-align:center; }
+      .lead { margin-inline:auto; } .actions { justify-content:center; }
+      .cake-scene { min-height:350px; order:-1; } .cake-card { width:min(320px,88vw); }
+      .cake { transform:scale(.83); }
+      .memory-grid,.message-grid { grid-template-columns:1fr; }
+      .memory { transform:none; } .photo { min-height:220px; }
+    }
+    @media(max-width:390px) { .countdown { gap:7px; } .time-box { padding:14px 3px; } .time-box span { font-size:.68rem; } }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; transition-duration:.01ms!important; } }
+  </style>
+</head>
+<body>
+  <div class="floaties" id="floaties" aria-hidden="true"></div>
+  <canvas id="effects" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <nav>
+      <div class="brand">🎀YOURS DAY</div>
+      <button class="music-btn" id="musicBtn" aria-pressed="false">♫ Play music</button>
+    </nav>
+
+    <main>
+      <section class="hero" id="home">
+        <div>
+          <span class="eyebrow">✨ TODAY IS ALL ABOUT YOU ✨</span>
+          <h1>Happy Birthday,<br><span id="heroName">Bestie!</span> 🎂</h1>
+          <p class="lead" id="heroMessage"></p>
+          <div class="actions">
+            <button class="primary" id="celebrateBtn">Make a wish ✨</button>
+            <a class="secondary" href="#surprise" style="text-decoration:none;display:inline-flex;align-items:center">Open your surprise 🎁</a>
+          </div>
+        </div>
+        <div class="cake-scene" aria-label="Animated birthday cake illustration">
+          <div class="cake-card">
+            <span class="spark s1">✦</span><span class="spark s2">💖</span><span class="spark s3">✧</span>
+            <div class="cake">
+              <div class="plate"></div>
+              <div class="tier bottom"></div>
+              <div class="tier top"><i class="drip d1"></i><i class="drip d2"></i><i class="drip d3"></i><i class="drip d4"></i></div>
+              <div class="berry b1"></div><div class="berry b2"></div><div class="berry b3"></div>
+              <div class="candle"><div class="flame"></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="countdown">
+        <div class="section-head"><h2>Counting down to your day ⏰</h2><p>A little timer for a very special person.</p></div>
+        <div class="glass">
+          <div class="countdown" aria-live="polite">
+            <div class="time-box"><strong id="days">00</strong><span>Days</span></div>
+            <div class="time-box"><strong id="hours">00</strong><span>Hours</span></div>
+            <div class="time-box"><strong id="minutes">00</strong><span>Minutes</span></div>
+            <div class="time-box"><strong id="seconds">00</strong><span>Seconds</span></div>
+          </div>
+          
+        </div>
+      </section>
+
+      <section id="memories">
+        <div class="section-head"><h2>📸 Little Erumaaaaa’s Photo Gallery 🎀🌷</h2><p>Three tiny reminders.</p></div>
+        <div class="memory-grid">
+          <article class="memory" style="--tilt:-1deg"><div class="photo" id="photo1">🫶<br><small>Our favourite memory</small></div><p>Smiley Face</p></article>
+          <article class="memory" style="--tilt:1deg"><div class="photo" id="photo2">😂<br><small>The laughs that never end</small></div><p>Laughing for no reason</p></article>
+          <article class="memory" style="--tilt:-.5deg"><div class="photo" id="photo3">🌈<br><small>More adventures ahead</small></div><p>calm girl 🌷</p></article>
+        </div>
+       
+      </section>
+
+      <section id="surprise">
+        <div class="section-head"><h2>One last little surprise 🎁</h2><p>Tap the gift. Go on — it's all yours!</p></div>
+        <div class="glass gift-wrap">
+          <div class="gift" id="gift" role="img" aria-label="A wrapped pink birthday present">
+            <div class="gift-box"></div><div class="ribbon-v"></div><div class="gift-lid"></div><div class="ribbon-h"></div><div class="bow"></div>
+          </div>
+          <button class="primary" id="giftBtn">Unwrap your gift 💝</button>
+          <div class="surprise" id="surpriseMessage">
+            <h3>💖 A message from your Junior 💖</h3>
+            <p id="giftText">Once again, Happy Birthday, Chota Gurl! 🎉🎂💗 Stay Smile 😊 Always! 🫶🏻✨🥹🎂</p>
+            <button class="secondary" id="againBtn">Celebrate again 🎉</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>Made with <span style="color:#ef6198">♥</span> and a little bit of magic, just for <strong id="footerName">Bestie</strong> ✨</footer>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
